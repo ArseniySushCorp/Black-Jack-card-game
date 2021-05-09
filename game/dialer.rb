@@ -1,6 +1,6 @@
 class Dialer
-  def initialize(cards)
+  def initialize(cards, bank)
     @cards = cards
-    @bank = 100
+    @bank = bank
   end
 end

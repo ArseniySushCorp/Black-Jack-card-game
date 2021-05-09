@@ -1,7 +1,12 @@
 class Player
-  def initialize(name, cards)
+  include Scoring
+
+  attr_reader :cards
+
+  def initialize(name, cards, bank)
     @cards = cards
     @name = name
-    @bank = 100
+    @bank = bank
+    @points = count_points(cards)
   end
 end
