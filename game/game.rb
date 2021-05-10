@@ -38,6 +38,13 @@ class Game
     win(@dialer) if @dialer.points > @player.points
   end
 
+  def game_over
+    @players.each(&:fold_cards)
+    @deack = create_deck
+
+    @game_bank = 0
+  end
+
   private
 
   def create_deck
@@ -50,22 +57,9 @@ class Game
 
   def draw
     @players.each { |p| p.bank += @game_bank / @players.size }
-
-    nulify_bank
   end
 
   def win(player)
-    player.bank += bounty
-  end
-
-  def bounty
-    value = @game_bank
-    nulify_bank
-
-    value
-  end
-
-  def nulify_bank
-    @game_bank = 0
+    player.bank += @game_bank
   end
 end

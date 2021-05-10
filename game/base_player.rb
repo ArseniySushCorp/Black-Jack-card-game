@@ -18,6 +18,18 @@ class BasePlayer
     raise 'Bank empty' if @bank.zero?
   end
 
+  def add_card(card)
+    @cards.push(card)
+  end
+
+  def two_cards?
+    @cards.size == 2
+  end
+
+  def fold_cards
+    @cards = []
+  end
+
   def lost?
     points > 21
   end
@@ -26,11 +38,4 @@ class BasePlayer
     points <= 21
   end
 
-  def add_card(card)
-    @cards.push(card)
-  end
-
-  def two_cards?
-    @cards.size == 2
-  end
 end
