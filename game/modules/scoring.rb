@@ -5,16 +5,12 @@ module Scoring
   include Variables
 
   def count_points(cards)
-    @points = check_cards(cards)
-  end
-
-  private
-
-  def check_cards(cards)
     count = without_ace(cards) || 0
 
     include_ace?(cards) ? count_ace(cards, count) : count
   end
+
+  private
 
   def without_ace(cards)
     is_picture = ->(x) { PICTURE_CARDS.include? x }

@@ -1,6 +1,8 @@
-class Dialer
-  def initialize(cards, bank)
-    @cards = cards
-    @bank = bank
+class Dialer < BasePlayer
+  include Scoring
+  attr_accessor :bank
+
+  def initialize(bank, name = 'Dialer')
+    super
   end
 end

@@ -1,5 +1,6 @@
 module Variables
   INITIAL_BANK = 100
+  RATE = 10
 
   SPADES = '♠'.freeze
   CLUBS = '♣'.freeze
