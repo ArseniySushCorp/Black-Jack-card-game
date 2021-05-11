@@ -2,6 +2,7 @@ class BasePlayer
   include Scoring
 
   attr_accessor :cards, :bank
+  attr_reader :name
 
   def initialize(bank, name)
     @name = name
@@ -22,8 +23,8 @@ class BasePlayer
     @cards.push(card)
   end
 
-  def two_cards?
-    @cards.size == 2
+  def cards?(size)
+    @cards.size == size
   end
 
   def fold_cards

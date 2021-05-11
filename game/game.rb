@@ -21,7 +21,7 @@ class Game
   end
 
   def add_card(person)
-    person.add_card(@deck.shift) if person.two_cards?
+    person.add_card(@deck.shift) if person.cards?(2)
   end
 
   def place_bet
@@ -41,7 +41,7 @@ class Game
 
   def game_over
     @players.each(&:fold_cards)
-    @deack = create_deck
+    @deck = create_deck
 
     @game_bank = 0
   end

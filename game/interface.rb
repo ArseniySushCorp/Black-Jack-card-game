@@ -15,18 +15,19 @@ class Interface
   end
 
   def start
+    @game.game_over
     @shuffle = @game.start
 
     player_turn
   end
 
   def player_turn
-    exit_loop display(@game) do |command|
+    exit_loop display_game(@game) do |command|
       case command
       when '1'
-        move(@shuffle.next_move)
+        @shuffle.next_move
       when '2'
-        move(@shuffle.add_card)
+        @shuffle.add_card
       when '3'
         show_cards
       end
@@ -35,14 +36,12 @@ class Interface
 
   private
 
-  def move(step)
-    @shuffle.dialer_move
-    step
-  end
-
   def show_cards
     winner = @shuffle.show_cards
-    display_winner(winner)
+
+    exit_loop display_game_over(winner, @game) do |command|
+      command == YES ? start : wrong
+    end
   end
 
   def exit_loop(texts, &block)
