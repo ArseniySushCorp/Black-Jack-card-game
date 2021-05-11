@@ -35,8 +35,11 @@ class Game
 
     draw if @player.points == @dialer.points
 
-    win(@player) if @player.points > @dialer.points
-    win(@dialer) if @dialer.points > @player.points
+    if @player.points > @dialer.points
+      win(@player)
+    else
+      win(@dialer)
+    end
   end
 
   def game_over

@@ -18,10 +18,10 @@ class Interface
     @game.game_over
     @shuffle = @game.start
 
-    player_turn
+    player_actions
   end
 
-  def player_turn
+  def player_actions
     exit_loop display_game(@game) do |command|
       case command
       when '1'

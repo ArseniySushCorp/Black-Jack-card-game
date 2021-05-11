@@ -1,5 +1,6 @@
 class Shuffle
   attr_reader :winner
+  require 'pry'
 
   def initialize(game)
     @game = game
@@ -11,10 +12,12 @@ class Shuffle
   end
 
   def start
+    @game.place_bet
     @game.destribution
-    @who_move = @game.player
+    @who_move = @player
   end
 
+  # dialer
   def next_move
     check_cards
 
@@ -27,11 +30,9 @@ class Shuffle
 
   def dialer_move
     case @dialer.points
-    when 17..30 then next_move
+    when 17..40 then next_move
     when 1..16 then add_card
     end
-
-    next_move
   end
 
   def add_card
