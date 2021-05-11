@@ -1,10 +1,9 @@
 class Game
   include Variables
 
-  attr_reader :player
+  attr_reader :player, :dialer, :players
 
   def initialize(player_name)
-    @deck = create_deck
     @game_bank = 0
     @player = Player.new(INITIAL_BANK, player_name)
     @dialer = Dialer.new(INITIAL_BANK)
@@ -15,12 +14,14 @@ class Game
     Shuffle.new(self)
   end
 
-  def add_card(person)
-    person.add_card(@deck.shift) if person.two_cards?
+  def destribution
+    @deck = create_deck
+
+    @players.each { |p| p.cards = @deck.shift(2) }
   end
 
-  def destribution
-    @players.each { |p| p.cards = @deck.shift(2) }
+  def add_card(person)
+    person.add_card(@deck.shift) if person.two_cards?
   end
 
   def place_bet
@@ -30,7 +31,7 @@ class Game
   end
 
   def define_winner
-    @players.find(&:not_lost?) if someone_lost?
+    win(@players.find(&:not_lost?)) if someone_lost?
 
     draw if @player.points == @dialer.points
 
@@ -57,9 +58,11 @@ class Game
 
   def draw
     @players.each { |p| p.bank += @game_bank / @players.size }
+    DRAW
   end
 
   def win(player)
     player.bank += @game_bank
+    player
   end
 end

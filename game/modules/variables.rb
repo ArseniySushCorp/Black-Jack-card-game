@@ -1,4 +1,9 @@
 module Variables
+  YES = 'y'.freeze
+  QUIT = 'q'.freeze
+
+  DRAW = 'Draw'.freeze
+
   INITIAL_BANK = 100
   RATE = 10
 
