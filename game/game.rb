@@ -1,6 +1,5 @@
 class Game
   include Variables
-  require 'pry'
 
   attr_reader :player, :dialer, :players
 
@@ -32,15 +31,14 @@ class Game
   end
 
   def define_winner
-    return win(@players.find(&:not_lost?)) if someone_lost?
+    return draw if @player.points == @dialer.points || all_lost
 
-
-    return draw if @player.points == @dialer.points
+    return win find_winner if someone_lost?
 
     if @player.points > @dialer.points
-      win(@player)
+      win @player
     else
-      win(@dialer)
+      win @dialer
     end
   end
 
@@ -55,6 +53,14 @@ class Game
 
   def create_deck
     CARD_VALUES.map { |card_value| SUITS.map { |suit| { value: card_value, suit: suit } } }.flatten!.shuffle
+  end
+
+  def find_winner
+    @players.find(&:not_lost?)
+  end
+
+  def all_lost
+    find_winner.nil?
   end
 
   def someone_lost?
