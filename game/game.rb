@@ -1,5 +1,6 @@
 class Game
   include Variables
+  require 'pry'
 
   attr_reader :player, :dialer, :players
 
@@ -27,13 +28,14 @@ class Game
   def place_bet
     @players.each(&:place_bet)
 
-    @game_bank += RATE * @players.size
+    @game_bank = RATE * @players.size
   end
 
   def define_winner
-    win(@players.find(&:not_lost?)) if someone_lost?
+    return win(@players.find(&:not_lost?)) if someone_lost?
 
-    draw if @player.points == @dialer.points
+
+    return draw if @player.points == @dialer.points
 
     if @player.points > @dialer.points
       win(@player)
@@ -42,7 +44,7 @@ class Game
     end
   end
 
-  def game_over
+  def clear
     @players.each(&:fold_cards)
     @deck = create_deck
 
