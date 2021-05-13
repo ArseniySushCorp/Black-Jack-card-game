@@ -3,7 +3,7 @@ class Shuffle
 
   def initialize(game)
     @game = game
-    @dialer = @game.dialer
+    @dealer = @game.dealer
     @player = @game.player
     @who_move = nil
 
@@ -22,15 +22,15 @@ class Shuffle
 
     @who_move = next_player
 
-    dialer_move if next_player == @dialer
+    dealer_move if next_player == @dealer
   end
 
   def next_player
     @game.players.find { |p| p != @who_move }
   end
 
-  def dialer_move
-    case @dialer.points
+  def dealer_move
+    case @dealer.points
     when 17..40 then next_move
     when 1..16 then add_card
     end
@@ -43,7 +43,7 @@ class Shuffle
   end
 
   def check_cards
-    show_cards if @player.cards?(3) && @dialer.cards?(3)
+    show_cards if @player.cards?(3) && @dealer.cards?(3)
   end
 
   def show_cards

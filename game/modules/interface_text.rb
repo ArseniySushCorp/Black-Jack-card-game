@@ -28,10 +28,10 @@ module InterfaceText
   private
 
   def display(game, show)
-    dialer = game.dialer
+    dealer = game.dealer
     player = game.player
 
-    info(dialer, show).concat(info(player, true))
+    info(dealer, show).concat(info(player, true))
   end
 
   def display_draw(game)

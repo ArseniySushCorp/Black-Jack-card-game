@@ -5,7 +5,7 @@ require_relative 'game'
 require_relative './players/base_player'
 require_relative 'shuffle'
 require_relative './players/player'
-require_relative './players/dialer'
+require_relative './players/dealer'
 require_relative 'interface'
 
 Interface.new

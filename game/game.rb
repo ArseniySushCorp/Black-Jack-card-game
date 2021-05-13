@@ -1,13 +1,13 @@
 class Game
   include Variables
 
-  attr_reader :player, :dialer, :players
+  attr_reader :player, :dealer, :players
 
   def initialize(player_name)
     @game_bank = 0
     @player = Player.new(INITIAL_BANK, player_name)
-    @dialer = Dialer.new(INITIAL_BANK)
-    @players = [@player, @dialer]
+    @dealer = Dealer.new(INITIAL_BANK)
+    @players = [@player, @dealer]
   end
 
   def start
@@ -31,14 +31,14 @@ class Game
   end
 
   def define_winner
-    return draw if @player.points == @dialer.points || all_lost
+    return draw if @player.points == @dealer.points || all_lost
 
     return win find_winner if someone_lost?
 
-    if @player.points > @dialer.points
+    if @player.points > @dealer.points
       win @player
     else
-      win @dialer
+      win @dealer
     end
   end
 
