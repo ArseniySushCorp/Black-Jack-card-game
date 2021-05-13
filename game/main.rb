@@ -1,5 +1,4 @@
 require_relative './modules/variables'
-require_relative './modules/scoring'
 require_relative './modules/interface_text'
 require_relative 'game'
 require_relative 'deck'
