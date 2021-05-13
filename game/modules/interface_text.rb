@@ -52,7 +52,7 @@ module InterfaceText
   def info(person, show)
     [
       '',
-      "#{person.name} cards: #{show ? person.display_cards : person.hidden_cards }",
+      "#{person.name} cards: #{show ? display_cards(person) : hidden_cards(person) }",
       "#{person.name} points: #{show ? person.points : '**'}",
       "#{person.name} bank: #{person.bank}",
       '----------------------------'
@@ -77,5 +77,13 @@ module InterfaceText
       'Play again?',
       "'y' - yes, 'q' - quit"
     ]
+  end
+
+  def display_cards(person)
+    person.cards.map { |c| c[:value] + c[:suit] }
+  end
+
+  def hidden_cards(person)
+    '*' * person.cards.size
   end
 end

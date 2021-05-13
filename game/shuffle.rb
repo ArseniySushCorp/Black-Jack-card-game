@@ -20,11 +20,13 @@ class Shuffle
   def next_move
     check_cards
 
-    next_player = @game.players.find { |p| p != @who_move }
-
     @who_move = next_player
 
     dialer_move if next_player == @dialer
+  end
+
+  def next_player
+    @game.players.find { |p| p != @who_move }
   end
 
   def dialer_move

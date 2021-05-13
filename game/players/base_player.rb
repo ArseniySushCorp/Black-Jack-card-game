@@ -38,12 +38,4 @@ class BasePlayer
   def not_lost?
     points <= 21
   end
-
-  def display_cards
-    @cards.map { |c| c[:value] + c[:suit] }
-  end
-
-  def hidden_cards
-    '*' * @cards.size
-  end
 end
