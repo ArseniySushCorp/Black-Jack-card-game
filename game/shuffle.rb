@@ -22,7 +22,7 @@ class Shuffle
 
     @who_move = next_player
 
-    dealer_move if next_player == @dealer
+    dealer_move if @who_move == @dealer
   end
 
   def next_player

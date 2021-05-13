@@ -5,6 +5,7 @@ class Game
 
   def initialize(player_name)
     @game_bank = 0
+    @deck = Deck.new
     @player = Player.new(INITIAL_BANK, player_name)
     @dealer = Dealer.new(INITIAL_BANK)
     @players = [@player, @dealer]
@@ -15,7 +16,7 @@ class Game
   end
 
   def destribution
-    @deck = create_deck
+    @deck.create
 
     @players.each { |p| p.cards = @deck.shift(2) }
   end
@@ -44,16 +45,12 @@ class Game
 
   def clear
     @players.each(&:fold_cards)
-    @deck = create_deck
+    @deck.create
 
     @game_bank = 0
   end
 
   private
-
-  def create_deck
-    CARD_VALUES.map { |card_value| SUITS.map { |suit| { value: card_value, suit: suit } } }.flatten!.shuffle
-  end
 
   def find_winner
     @players.find(&:not_lost?)
