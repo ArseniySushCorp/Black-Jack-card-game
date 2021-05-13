@@ -1,5 +1,4 @@
 class Hand
-  include Scoring
   include Variables
 
   attr_accessor :cards
