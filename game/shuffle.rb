@@ -43,7 +43,7 @@ class Shuffle
   end
 
   def check_cards
-    show_cards if @player.cards?(3) && @dealer.cards?(3)
+    show_cards if @player.hand.cards?(3) && @dealer.hand.cards?(3)
   end
 
   def show_cards

@@ -18,11 +18,11 @@ class Game
   def destribution
     @deck.create
 
-    @players.each { |p| p.cards = @deck.shift(2) }
+    @players.each { |p| p.hand.cards = @deck.shift(2) }
   end
 
   def add_card(person)
-    person.add_card(@deck.shift) if person.cards?(2)
+    person.hand.add_card(@deck.shift) if person.hand.cards?(2)
   end
 
   def place_bet
@@ -44,7 +44,7 @@ class Game
   end
 
   def clear
-    @players.each(&:fold_cards)
+    @players.each { |p| p.hand.fold_cards }
     @deck.create
 
     @game_bank = 0

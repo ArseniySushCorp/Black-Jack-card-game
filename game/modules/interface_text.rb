@@ -80,10 +80,10 @@ module InterfaceText
   end
 
   def display_cards(person)
-    person.cards.map { |c| c[:value] + c[:suit] }
+    person.hand.cards.map { |c| c[:value] + c[:suit] }
   end
 
   def hidden_cards(person)
-    '*' * person.cards.size
+    '*' * person.hand.cards.size
   end
 end

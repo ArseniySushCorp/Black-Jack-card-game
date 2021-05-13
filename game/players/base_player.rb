@@ -1,34 +1,23 @@
 class BasePlayer
-  include Scoring
+  include Variables
 
-  attr_accessor :cards, :bank
-  attr_reader :name
+  attr_accessor :bank
+  attr_reader :name, :hand
 
   def initialize(bank, name)
+    @hand = Hand.new
     @name = name
     @bank = bank
   end
 
   def points
-    count_points(@cards)
+    @hand.points
   end
 
   def place_bet
     @bank -= RATE
 
     raise 'Bank empty' if @bank.zero?
-  end
-
-  def add_card(card)
-    @cards.push(card)
-  end
-
-  def cards?(size)
-    @cards.size == size
-  end
-
-  def fold_cards
-    @cards = []
   end
 
   def lost?
